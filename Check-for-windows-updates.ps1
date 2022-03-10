@@ -23,20 +23,17 @@ create_task
 
 # check if powershel module exist
 # if module exist check for updates and install
-function auto_updates{
+function auto_updates {
 
-if (Get-Module -ListAvailable -Name "PSWindowsUpdate") 
-{
-    Write-Host "Module exists"
-    Get-WindowsUpdate | Where-Object {$_.KB -notlike 'KB5008084'}
-} 
+    if (Get - Module - ListAvailable - Name "PSWindowsUpdate") {
+        Get - WindowsUpdate - Download - Install - IgnoreReboot - Confirm: $false
+    }
+     else {
+        Install - Module - Name PSWindowsUpdate - Force - Confirm: $false
 
-else
-{
-    Install-Module -Name PSWindowsUpdate -Force -Confirm:$false
+        if (Get - Module - ListAvailable - Name "PSWindowsUpdate") {
+            Get - WindowsUpdate - Download - Install - IgnoreReboot - Confirm: $false
+        }
+    }
 
 }
-
-}
-auto_updates
-
