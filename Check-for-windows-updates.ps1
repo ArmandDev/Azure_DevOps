@@ -25,15 +25,15 @@ create_task
 # if module exist check for updates and install
 function auto_updates {
 
-    if (Get - Module - ListAvailable - Name "PSWindowsUpdate") {
-        Get - WindowsUpdate - Download - Install - IgnoreReboot - Confirm: $false
+    if (Get-Module -ListAvailable -Name "PSWindowsUpdate") {
+        Get-WindowsUpdate -Download -Install -IgnoreReboot -Confirm:$false
     }
      else {
-        Install - Module - Name PSWindowsUpdate - Force - Confirm: $false
+        Install-Module -Name PSWindowsUpdate -Force -Confirm:$false
 
-        if (Get - Module - ListAvailable - Name "PSWindowsUpdate") {
-            Get - WindowsUpdate - Download - Install - IgnoreReboot - Confirm: $false
+        if (Get-Module -ListAvailable -Name "PSWindowsUpdate") {
+            Get-WindowsUpdate -Download -Install -IgnoreReboot -Confirm:$false
         }
     }
 
-}
+}auto_updates
