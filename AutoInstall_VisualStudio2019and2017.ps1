@@ -17,9 +17,11 @@ get-childitem "C:\Program Files\Microsoft Visual Studio\2022" | % {
 }
 
 remove-item $t -Force -Confirm:$false
+
+
 #>
 
-# VS 2019
+# VS 2019 Comunity edition
 
 $t = "$(New-TemporaryFile).exe"
 
